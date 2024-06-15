@@ -25,6 +25,7 @@ GR4j-
 │   ├── mytools.py   
 │   ├── run.py              # 运行
 │   └── simulate.py   
+├── .gitignore              # Git忽略文件
 ├── README.md               # README说明文件
 └── 大作业报告                # 大作业报告文件夹
     └── 李赫曦小组报告.doc   
@@ -51,3 +52,9 @@ python run.py
 同时在`data`文件夹下会生成两个文件：
 - `GR4J_opt_log.xlsx`  贝叶斯调参日志表格
 - `GR4J_Parameter_best.txt`  模型最优参数
+
+## 贡献者
+
+<a href="https://github.com/lihexi333/GR4j-/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=lihexi333/GR4j-" />
+</a>
