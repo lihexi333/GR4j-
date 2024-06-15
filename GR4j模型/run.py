@@ -131,7 +131,7 @@ def opt():
     # print(reslist)
     data = pd.DataFrame(reslist)
     data=data.sort_values('NSE',ascending=False) #按照NSE值降序排序
-    data.to_excel("GR4J_opt_log.xlsx")
+    data.to_excel("data/GR4J_opt_log.xlsx")
     print("最优参数：\n",end='')
     # 最优参数保留到小数点后三位
     for k,v in optimizer.max['params'].items():
@@ -139,13 +139,13 @@ def opt():
     print("NSE="+str(optimizer.max['target']))
     return  optimizer.max['params']
 if __name__ == '__main__':
-    if  os.path.exists("GR4J_Parameter_best.txt"):
-        params = np.loadtxt('GR4J_Parameter_best.txt')
+    if  os.path.exists("data/GR4J_Parameter_best.txt"):
+        params = np.loadtxt('data/GR4J_Parameter_best.txt')
         print("NSE:"+str(model(params[0],params[1],params[2],params[3],eval=True)))
     else:
         params=opt() #获取最优参数
         print("NSE:"+str(model(round(params['x1'],3),round(params['x2'],3),round(params['x3'],3),round(params['x4'],3),eval=True))) #加载最优模型
-        with  open("GR4J_Parameter_best.txt","w") as f:
+        with  open("data/GR4J_Parameter_best.txt","w") as f:
             for v in  params.values():
                 f.write(str(round(v,3))+"\n")
 

@@ -1,0 +1,52 @@
+# GR4j-
+![GitHub commit activity (branch)](https://img.shields.io/github/commit-activity/t/lihexi333/GR4j-/main)
+![Static Badge](https://img.shields.io/badge/Python-3.12-blue)
+![Static Badge](https://img.shields.io/badge/conda-24.1.2-orange)
+
+
+
+
+这是水文与软件工程小组的GR4j模型作业
+
+##  模型介绍
+GR4j模型是一种用于模拟和预测水文过程的模型。它基于四阶Runge-Kutta方法，是一种经典的数值方法，用于求解常微分方程。GR4j模型是一种广泛使用的模型，被广泛应用于水文学、气象学等领域。  
+在此项目中，我们使用**GR4j模型**来模拟和预测水文过程。同时使用**贝叶斯调参**技术来优化模型的四个输入参数。
+
+## 项目结构
+```
+GR4j-
+├── GR4j模型                 # 模型文件夹
+│   ├── data                # 数据文件夹
+│   │   ├── inputData.txt  
+│   │   ├── others.txt   
+│   ├── environment.yaml    # 环境配置文件
+│   ├── evaluate.py   
+│   ├── mytools.py   
+│   ├── run.py              # 运行
+│   └── simulate.py   
+├── README.md               # README说明文件
+└── 大作业报告                # 大作业报告文件夹
+    └── 李赫曦小组报告.doc   
+```
+## 使用说明
+
+### 1.克隆仓库并进入文件夹
+```
+git clone https://github.com/lihexi333/GR4j-.git
+cd GR4j-/GR4j模型
+```
+### 2.环境配置
+```
+conda env create -f environment.yml
+conda activate Python3.12
+```
+### 3.运行模型
+在当前文件夹`GR4j模型`下新建`data`文件夹，放入`inputData.txt`数据文件和`others.txt`参数文件
+```
+python run.py
+```
+### 4.查看结果
+运行完成后会弹出plotly绘图页面  
+同时在`data`文件夹下会生成两个文件：
+- `GR4J_opt_log.xlsx`  贝叶斯调参日志表格
+- `GR4J_Parameter_best.txt`  模型最优参数
