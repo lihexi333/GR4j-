@@ -46,7 +46,7 @@ conda env create -f environment.yml
 conda activate Python3.12
 ```
 ### 3.运行模型
-在当前文件夹`GR4j模型`下`data`文件夹，放入`inputData.txt`数据文件和`others.txt`参数文件
+在当前文件夹`GR4j模型`下`data`文件夹，放入包含`inputData.txt`数据文件和`others.txt`参数文件的所有数据文件夹
 ```
 python run.py
 ```
