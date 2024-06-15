@@ -148,4 +148,5 @@ if __name__ == '__main__':
         with  open("GR4J_Parameter_best.txt","w") as f:
             for v in  params.values():
                 f.write(str(round(v,3))+"\n")
+
     print("GR4J Simulation Finished")
