@@ -18,8 +18,9 @@ GR4j模型是一种用于模拟和预测水文过程的模型。它基于四阶R
 GR4j-
 ├── GR4j模型                 # 模型文件夹
 │   ├── data                # 数据文件夹
-│   │   ├── inputData.txt  
-│   │   ├── others.txt   
+│   │   ├── demo_124002A
+│   │   ....
+│   │   └── demo_919005A 
 │   ├── environment.yaml    # 环境配置文件
 │   ├── evaluate.py   
 │   ├── mytools.py   
@@ -27,8 +28,10 @@ GR4j-
 │   └── simulate.py   
 ├── .gitignore              # Git忽略文件
 ├── README.md               # README说明文件
-└── 大作业报告                # 大作业报告文件夹
-    └── 李赫曦小组报告.doc   
+├── 大作业报告               
+├── 实践课程2-水文模型         # 课程资料文件夹
+├── 小组作业数据
+└── 运行结果
 ```
 ## 使用说明
 
@@ -48,10 +51,11 @@ conda activate Python3.12
 python run.py
 ```
 ### 4.查看结果
-运行完成后会弹出plotly绘图页面  
-同时在`data`文件夹下会生成两个文件：
-- `GR4J_opt_log.xlsx`  贝叶斯调参日志表格
-- `GR4J_Parameter_best.txt`  模型最优参数
+- 运行完成后会弹出plotly绘图页面  
+- 在模型文件夹会生成`结果图表`文件夹存储所有运行结果图  
+- 同时在`data`文件夹中每个数据文件夹下会生成两个文件：
+  - `GR4J_opt_log.xlsx`  贝叶斯调参日志表格
+  - `GR4J_Parameter_best.txt`  模型最优参数
 
 ## 贡献者
 

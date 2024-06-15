@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
+import os
+
 import matplotlib.pyplot as plt
 
-def evaluate_gr4j_model(nStep, Qobs_mm, Q):
+def evaluate_gr4j_model(nStep, Qobs_mm, Q,filename):
     # 精度评估
     count = 0  # 计数器：记录总天数
     Q_accum = 0.0  # 记录累计径流量
@@ -22,34 +24,11 @@ def evaluate_gr4j_model(nStep, Qobs_mm, Q):
 
     NSE = 1 - Q_diff1 / Q_diff2
 
-    # # 修正中文乱码问题，提供字体支持即可
-    # import matplotlib as mpl
-    # mpl.rcParams['font.sans-serif'] = ['KaiTi']
-    # mpl.rcParams['font.serif'] = ['KaiTi']
-    #
-    #
+
     # # 评估径流模拟效果：模型流域出口断面流量及模拟得到的流域出口断面流量
     # # 绘制相关图
     axis = list(range(1, nStep + 1))
-    # plt.figure()
-    # plt.plot(axis, Q, '--', label='模拟径流量')
-    # plt.plot(axis, Qobs_mm, 'y-', label='观测径流量',alpha=0.7)
-    # plt.title('GR4J模型模拟效果图, NSE=' + str(NSE))
-    # plt.xlabel('时间（天）')
-    # plt.ylabel('流量（mm/d）')
-    # plt.legend()
-    # plt.show()
 
-    # import plotly.graph_objects as go
-    # fig = go.Figure()
-    # fig.add_trace(go.Scatter(x=axis, y=Q, mode='lines', name='模拟径流量'))
-    # fig.add_trace(go.Scatter(x=axis, y=Qobs_mm, mode='lines', name='观测径流量'
-    #                               , line=dict(color='yellow', width=2)))
-    # fig.update_layout(title='GR4J模型模拟效果图, NSE=' + str(NSE),
-    #                     xaxis_title='时间（天）', yaxis_title='流量（mm/d）')
-    # fig.show()
-
-    #使用plotly绘制堆叠柱状图,适当美化柱状图显示
     import plotly.graph_objects as go
 
     # 创建折线图
@@ -111,6 +90,10 @@ def evaluate_gr4j_model(nStep, Qobs_mm, Q):
     fig.update_traces(
         hoverinfo='x+y' ,  # 设置悬停信息
     )
+    # 创建图片文件夹
+    if not os.path.exists('结果图表'):
+        os.mkdir('结果图表')
+    fig.write_image( '结果图表/'+filename+'.png',height=1080,width=1920,engine="kaleido")
 
     # 显示图表
     fig.show()
