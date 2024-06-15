@@ -115,20 +115,21 @@ def model(x1,x2,x3,x4,eval=False,path='data'):
         evaluate_gr4j_model(nStep , Qobs_mm , Q,path.split('/')[1])
     return score(nStep,Qobs_mm , Q)
 
+
 # 调参函数
 def opt(path):
     # 使用贝叶斯优化调参
     step=150
     target = partial(model , path=path)
-    params = {"x1":(10,700),"x2":(-5.5,3.5),"x3":(20,400),"x4":(1.0,2.5)}
+    params = {"x1": (10, 700), "x2": (-5.5, 3.5), "x3": (20, 400), "x4": (1.0, 2.5)}
     optimizer=BayesianOptimization(f=target,pbounds=params,random_state=1)
-    optimizer.maximize(init_points=0,n_iter=100)
+    optimizer.maximize(init_points=5,n_iter=20)
     reslist = []
 
 
     # 效果不理想，则增加优化步数
     while optimizer.max['target']<0.8:
-        optimizer.maximize(init_points=0,n_iter=50)
+        optimizer.maximize(init_points=0,n_iter=20)
 
     # print(reslist)
     for i in optimizer.res:
@@ -145,9 +146,11 @@ def opt(path):
         print('\t%s:%0.3f'%(k,v))
     print("NSE="+str(optimizer.max['target']))
     return  optimizer.max['params']
+
 if __name__ == '__main__':
     #遍历data目录下的文件夹名
     for folder in os.listdir("data"):
+        # folder='demo_234203'
         path="data/"+folder
         if  os.path.exists(path+"/GR4J_Parameter_best.txt"):
             params = np.loadtxt(path+"/GR4J_Parameter_best.txt")
