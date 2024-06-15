@@ -149,18 +149,25 @@ def opt(path):
 
 if __name__ == '__main__':
     #遍历data目录下的文件夹名
+    params_list=[]
     for folder in os.listdir("data"):
         # folder='demo_234203'
         path="data/"+folder
         if  os.path.exists(path+"/GR4J_Parameter_best.txt"):
             params = np.loadtxt(path+"/GR4J_Parameter_best.txt")
-            print("NSE:"+str(model(params[0],params[1],params[2],params[3],eval=True,path=path)))
+            nse=model(params[0],params[1],params[2],params[3],eval=True,path=path)
+            params_list.append({"NSE":nse,"x1":params[0],"x2":params[1],"x3":params[2],"x4":params[3]})
+            print("NSE:"+str(nse))
         else:
             params=opt(path) #获取最优参数
+            nse = model(round(params['x1'],3),round(params['x2'],3),round(params['x3'],3),round(params['x4'],3),eval=True,path=path)
+            params_list.append({"NSE": nse , "x1": params['x1'] , "x2": params['x2'] , "x3": params['x3'] , "x4": params['x4']})
             # 打印最优模型NSE
-            print("NSE:"+str(model(round(params['x1'],3),round(params['x2'],3),round(params['x3'],3),round(params['x4'],3),eval=True,path=path)))
+
+            print("NSE:"+str(nse))
             with  open(path+"/GR4J_Parameter_best.txt","w") as f:
                 for v in  params.values():
                     f.write(str(round(v,3))+"\n")
-
+    df=pd.DataFrame(params_list,index=os.listdir('data'))
+    df.to_excel("GR4J_Parameter.xlsx")
     print("GR4J Simulation Finished")
