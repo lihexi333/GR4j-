@@ -1,7 +1,8 @@
 # GR4j-
-![GitHub commit activity (branch)](https://img.shields.io/github/commit-activity/t/lihexi333/GR4j-/main)
-![Static Badge](https://img.shields.io/badge/Python-3.12-blue)
+![Static Badge](https://img.shields.io/badge/Python-3.12-green)
 ![Static Badge](https://img.shields.io/badge/conda-24.1.2-orange)
+![GitHub commit activity (branch)](https://img.shields.io/github/commit-activity/t/lihexi333/GR4j-/main)
+
 
 
 
